@@ -1,8 +1,8 @@
-module github.com/HunnTeRUS/bookstore_utils-go
+module github.com/Bookstore-GolangMS/bookstore_utils-go
 
 go 1.16
 
 require (
 	github.com/stretchr/testify v1.7.0
-	go.uber.org/zap v1.19.0 // indirect
+	go.uber.org/zap v1.19.0
 )
