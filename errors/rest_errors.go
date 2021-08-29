@@ -16,7 +16,7 @@ type RestErr interface {
 type restErr struct {
 	message string        `json:"message"`
 	code    int           `json:"code"`
-	error   string        `json:"errors"`
+	err     string        `json:"error"`
 	causes  []interface{} `json:"causes"`
 }
 
@@ -24,7 +24,7 @@ func NewRestError(message string, code int, err string, causes []interface{}) Re
 	return restErr{
 		message: message,
 		code:    code,
-		error:   err,
+		err:     err,
 		causes:  causes,
 	}
 }
@@ -43,7 +43,7 @@ func (r restErr) Causes() []interface{} {
 
 func (r restErr) Error() string {
 	return fmt.Sprintf(
-		"message: %s - code: %d - error: %s - causes: [ %v ]", r.message, r.code, r.error, r.causes)
+		"message: %s - code: %d - err: %s - causes: [ %v ]", r.message, r.code, r.err, r.causes)
 }
 
 func NewError(msg string) error {
@@ -54,7 +54,7 @@ func NewBadRequestError(message string) RestErr {
 	return restErr{
 		message: message,
 		code:    http.StatusBadRequest,
-		error:   "bad_request",
+		err:     "bad_request",
 	}
 }
 
@@ -62,7 +62,7 @@ func NewNotFoundError(message string) RestErr {
 	return restErr{
 		message: message,
 		code:    http.StatusNotFound,
-		error:   "not_found",
+		err:     "not_found",
 	}
 }
 
@@ -70,7 +70,7 @@ func NewInternalServerError(message string, err error) RestErr {
 	result := restErr{
 		message: message,
 		code:    http.StatusInternalServerError,
-		error:   "internal_server_error",
+		err:     "internal_server_error",
 	}
 
 	if err != nil {
@@ -84,6 +84,6 @@ func NewUnauthorizedError(message string) RestErr {
 	return restErr{
 		message: message,
 		code:    http.StatusUnauthorized,
-		error:   "unauthorized",
+		err:     "unauthorized",
 	}
 }
