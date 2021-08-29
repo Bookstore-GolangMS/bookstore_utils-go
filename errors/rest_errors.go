@@ -2,7 +2,6 @@ package errors
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 )
 
@@ -42,8 +41,7 @@ func (r restErr) Causes() []interface{} {
 }
 
 func (r restErr) Error() string {
-	return fmt.Sprintf(
-		"message: %s - code: %d - err: %s - causes: [ %v ]", r.message, r.code, r.err, r.causes)
+	return r.err
 }
 
 func NewError(msg string) error {

@@ -13,13 +13,13 @@ func TestNewInternalServerError(t *testing.T) {
 	err := NewInternalServerError(errorMessage, errors.New("database error"))
 
 	assert.NotNil(t, err)
-	assert.EqualValues(t, http.StatusInternalServerError, err.Code)
-	assert.EqualValues(t, errorMessage, err.Message)
-	assert.EqualValues(t, "internal_server_error", err.Error)
+	assert.EqualValues(t, http.StatusInternalServerError, err.Code())
+	assert.EqualValues(t, errorMessage, err.Message())
+	assert.EqualValues(t, "internal_server_error", err.Error())
 
-	assert.NotNil(t, err.Causes)
-	assert.EqualValues(t, 1, len(err.Causes))
-	assert.EqualValues(t, "database error", err.Causes[0])
+	assert.NotNil(t, err.Causes())
+	assert.EqualValues(t, 1, len(err.Causes()))
+	assert.EqualValues(t, "database error", err.Causes()[0])
 }
 
 func TestNewBadRequestError(t *testing.T) {
@@ -27,9 +27,9 @@ func TestNewBadRequestError(t *testing.T) {
 	err := NewBadRequestError(errorMessage)
 
 	assert.NotNil(t, err)
-	assert.EqualValues(t, http.StatusBadRequest, err.Code)
-	assert.EqualValues(t, errorMessage, err.Message)
-	assert.EqualValues(t, "bad_request", err.Error)
+	assert.EqualValues(t, http.StatusBadRequest, err.Code())
+	assert.EqualValues(t, errorMessage, err.Message())
+	assert.EqualValues(t, "bad_request", err.Error())
 }
 
 func TestNewNotFoundError(t *testing.T) {
@@ -37,9 +37,9 @@ func TestNewNotFoundError(t *testing.T) {
 	err := NewNotFoundError(errorMessage)
 
 	assert.NotNil(t, err)
-	assert.EqualValues(t, http.StatusNotFound, err.Code)
-	assert.EqualValues(t, errorMessage, err.Message)
-	assert.EqualValues(t, "not_found", err.Error)
+	assert.EqualValues(t, http.StatusNotFound, err.Code())
+	assert.EqualValues(t, errorMessage, err.Message())
+	assert.EqualValues(t, "not_found", err.Error())
 }
 
 func TestNewUnauthorizedError(t *testing.T) {
@@ -47,9 +47,9 @@ func TestNewUnauthorizedError(t *testing.T) {
 	err := NewUnauthorizedError(errorMessage)
 
 	assert.NotNil(t, err)
-	assert.EqualValues(t, http.StatusUnauthorized, err.Code)
-	assert.EqualValues(t, errorMessage, err.Message)
-	assert.EqualValues(t, "unauthorized", err.Error)
+	assert.EqualValues(t, http.StatusUnauthorized, err.Code())
+	assert.EqualValues(t, errorMessage, err.Message())
+	assert.EqualValues(t, "unauthorized", err.Error())
 }
 
 func TestNewError(t *testing.T) {
