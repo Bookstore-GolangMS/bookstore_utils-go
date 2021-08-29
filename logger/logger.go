@@ -19,6 +19,7 @@ var (
 
 type bookstoreLogger interface {
 	Printf(format string, v ...interface{})
+	Print(v ...interface{})
 }
 
 type logger struct {
